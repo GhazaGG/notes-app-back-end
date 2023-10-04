@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const Hapi = require('@hapi/hapi');
-const routes = require('./notes');
+const route = require('./routes');
 
 const init = async () => {
   const server = Hapi.server({
@@ -8,12 +8,12 @@ const init = async () => {
     host: 'localhost',
     routes: {
       cors: {
-        origin: ['http://notesapp-v1.dicodingacademy.com/'],
+        origin: ['*'],
       },
     },
   });
 
-  server.route(routes);
+  server.route(route);
 
   await server.start();
   console.log(`server berjalan pada ${server.info.uri}`);
